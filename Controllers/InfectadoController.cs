@@ -23,7 +23,7 @@ namespace ApiEMongo.Controllers
         {
             var infectado = new Infectado(dto.DataNascimento, dto.Sexo, dto.Latitude, dto.Longitude);
             _infectadosCollection.InsertOne(infectado);
-            return StatusCode(201, "Infectado adicionado com sucesso");
+            return StatusCode(201, infectado);
         }
 
         [HttpGet]
@@ -32,13 +32,5 @@ namespace ApiEMongo.Controllers
             var infectados = _infectadosCollection.Find(Builders<Infectado>.Filter.Empty).ToList();
             return Ok(infectados);
         }
-
-        // [HttpGet]
-        // public IActionResult AtualizarInfectado([FromBody] InfectadoDto dto)
-        // {
-        //     _infectadosCollection.UpdateOne(Builders<Infectado>.Filter.Where);
-        //     var infectados = _infectadosCollection.Find(Builders<Infectado>.Filter.Empty).ToList();
-        //     return Ok(infectados);
-        // }
     }
 }
